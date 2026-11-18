@@ -1,0 +1,14 @@
+{
+  "student": {
+    "name": "",
+    "admissionNumber": "",
+    "semester": "",
+    "branch": "",
+    "recipientAddress": "The Warden,\nMH 2 Hostel,\nRIT Kottayam."
+  },
+  "requestDraft": {
+    "reason": "",
+    "startDate": "",
+    "endDate": ""
+  }
+}

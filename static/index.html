@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mess Cut Request Generator</title>
+    <meta
+      name="description"
+      content="Generate validated, formal A4 Mess Cut Request Letters and selectable-text PDFs."
+    />
+    <link rel="stylesheet" href="./css/styles.css?v=20261118_formal_v4" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <div class="top-bar-inner">
+          <div class="brand-wrapper">
+            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <a href="./" class="brand-title">Mess Cut Request Generator</a>
+          </div>
+
+          <nav class="top-nav" aria-label="Primary sections">
+            <a href="#student-section" class="nav-link">Student Details</a>
+            <a href="#request-section" class="nav-link">Cut Dates</a>
+            <a href="#preview-section" class="nav-link">A4 Preview</a>
+            <a href="#rules-section" class="nav-link">Date Rules</a>
+          </nav>
+
+          <div class="top-actions">
+            <button
+              type="button"
+              id="btn-clear-all"
+              class="btn btn-ghost-danger"
+              title="Reset all entered details and drafts"
+            >
+              Clear All Data
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <!-- Mobile / Tablet View Switcher -->
+        <div class="mobile-view-tabs" role="tablist" aria-label="Workspace view">
+          <button
+            type="button"
+            id="tab-compose"
+            class="mobile-tab-btn is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="composer-column"
+          >
+            Compose Form
+          </button>
+          <button
+            type="button"
+            id="tab-preview"
+            class="mobile-tab-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="preview-section"
+          >
+            A4 Preview
+          </button>
+        </div>
+
+        <div class="workspace-grid">
+          <!-- Left Column: Student Details & Request Form -->
+          <div id="composer-column" class="composer-column">
+            <!-- Student Details Section -->
+            <section id="student-section" class="panel" aria-labelledby="student-heading">
+              <div class="panel-header">
+                <div>
+                  <h1 id="student-heading" class="panel-title">Student Details</h1>
+                  <p class="panel-subtitle">
+                    Enter your hostel and academic credentials.
+                  </p>
+                </div>
+                <span id="save-indicator" class="save-indicator" aria-live="polite">
+                  Ready
+                </span>
+              </div>
+
+              <!-- Fixed Recipient Banner -->
+              <div class="recipient-card">
+                <div class="recipient-label-row">
+                  <span class="field-label">Recipient</span>
+                  <span class="meta-tag">Fixed</span>
+                </div>
+                <div class="recipient-text">
+                  <strong>The Warden</strong>, MH 2 Hostel, RIT Kottayam.
+                </div>
+              </div>
+
+              <form id="student-form" class="form-stack" novalidate onsubmit="return false;">
+                <div class="field-row">
+                  <div class="field-group">
+                    <label for="input-name" class="field-label">
+                      Student Name <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="input-name"
+                      name="name"
+                      class="input-control"
+                      autocomplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div class="field-group">
+                    <label for="input-admission" class="field-label">
+                      Admission Number <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="input-admission"
+                      name="admissionNumber"
+                      class="input-control mono-input"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="field-row">
+                  <div class="field-group">
+                    <label for="input-semester" class="field-label">
+                      Semester <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="input-semester"
+                      name="semester"
+                      class="input-control"
+                      list="semester-suggestions"
+                      required
+                    />
+                    <datalist id="semester-suggestions">
+                      <option value="S1"></option>
+                      <option value="S2"></option>
+                      <option value="S3"></option>
+                      <option value="S4"></option>
+                      <option value="S5"></option>
+                      <option value="S6"></option>
+                      <option value="S7"></option>
+                      <option value="S8"></option>
+                    </datalist>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="input-branch" class="field-label">
+                      Branch <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="input-branch"
+                      name="branch"
+                      class="input-control"
+                      list="branch-suggestions"
+                      required
+                    />
+                    <datalist id="branch-suggestions">
+                      <option value="Computer Science and Engineering"></option>
+                      <option value="Electronics and Communication Engineering"></option>
+                      <option value="Electrical and Electronics Engineering"></option>
+                      <option value="Mechanical Engineering"></option>
+                      <option value="Civil Engineering"></option>
+                      <option value="Information Technology"></option>
+                    </datalist>
+                  </div>
+                </div>
+              </form>
+            </section>
+
+            <!-- Mess Cut Request Form Section -->
+            <section id="request-section" class="panel" aria-labelledby="request-heading">
+              <div class="panel-header">
+                <div>
+                  <h2 id="request-heading" class="panel-title">Mess Cut Details</h2>
+                  <p class="panel-subtitle">
+                    Strictly 7, 14, 21, or 28 inclusive days within one calendar month.
+                  </p>
+                </div>
+              </div>
+
+              <form id="request-form" class="form-stack" novalidate onsubmit="return false;">
+                <div class="field-group">
+                  <label for="input-reason" class="field-label">
+                    Reason for Mess Cut <span class="required-mark" aria-hidden="true">*</span>
+                  </label>
+                  <textarea
+                    id="input-reason"
+                    name="reason"
+                    class="input-control textarea-control"
+                    rows="2"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="field-row">
+                  <div class="field-group">
+                    <label for="input-start-date" class="field-label">
+                      Start Date <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      id="input-start-date"
+                      name="startDate"
+                      class="input-control mono-input"
+                      required
+                    />
+                  </div>
+
+                  <div class="field-group">
+                    <label for="input-end-date" class="field-label">
+                      End Date <span class="required-mark" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      id="input-end-date"
+                      name="endDate"
+                      class="input-control mono-input"
+                      disabled
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Suggested Valid End Dates -->
+                <div id="suggestions-container" class="suggestions-box" hidden>
+                  <div class="suggestions-header">
+                    <span class="field-label">Valid End Dates for Selected Start</span>
+                    <span id="month-capacity-note" class="meta-text"></span>
+                  </div>
+                  <div id="suggested-end-dates" class="suggestions-grid" role="group" aria-label="Suggested valid end dates"></div>
+                </div>
+
+                <!-- Validation Feedback -->
+                <div id="validation-feedback" class="validation-box validation-neutral" role="status" aria-live="polite">
+                  <div class="validation-title-row">
+                    <span id="validation-icon" class="validation-icon" aria-hidden="true"></span>
+                    <strong id="validation-heading" class="validation-heading">Select start and end dates</strong>
+                    <span id="calculated-days-readout" class="days-readout"></span>
+                  </div>
+                  <p id="validation-message" class="validation-message">
+                    Choose a start date to view valid same-month end dates in multiples of 7 days.
+                  </p>
+                </div>
+
+                <!-- Export Controls -->
+                <div class="export-area">
+                  <div class="export-actions">
+                    <button
+                      type="button"
+                      id="btn-download-pdf"
+                      class="btn btn-primary btn-lg"
+                      disabled
+                    >
+                      <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"
+                        />
+                        <path
+                          d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"
+                        />
+                      </svg>
+                      <span>Download PDF</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      id="btn-print-letter"
+                      class="btn btn-secondary btn-lg"
+                      disabled
+                    >
+                      Print
+                    </button>
+                  </div>
+
+                  <p id="filename-preview" class="filename-preview">
+                    Filename: Complete all required fields and select valid dates
+                  </p>
+                </div>
+              </form>
+            </section>
+
+            <!-- Date Rules Summary -->
+            <section id="rules-section" class="panel panel-compact" aria-labelledby="rules-heading">
+              <h2 id="rules-heading" class="panel-title-sm">Mess Cut Eligibility Rules</h2>
+              <ul class="rules-list">
+                <li>Duration must be an exact multiple of 7 days (7, 14, 21, or 28 days), counted inclusively.</li>
+                <li>Start and end dates must remain strictly within the same calendar month (no cross-month cuts).</li>
+                <li>At least 7 consecutive days must remain in the month from the chosen start date.</li>
+              </ul>
+            </section>
+          </div>
+
+          <!-- Right Column: Live A4 Letter Preview -->
+          <section id="preview-section" class="preview-column" aria-labelledby="preview-heading">
+            <div class="preview-header">
+              <div>
+                <h2 id="preview-heading" class="panel-title">Live A4 Letter Preview</h2>
+                <p class="panel-subtitle" id="preview-status-text">
+                  Matches the exported selectable-text PDF.
+                </p>
+              </div>
+              <div class="preview-header-controls">
+                <div class="preview-meta">
+                  <span>A4 · 210 × 297 mm</span>
+                  <span aria-hidden="true">·</span>
+                  <span id="preview-validity-label">Incomplete</span>
+                </div>
+                <button
+                  type="button"
+                  id="btn-toggle-zoom"
+                  class="btn btn-secondary btn-sm preview-zoom-btn"
+                  aria-pressed="false"
+                >
+                  Zoom 100%
+                </button>
+              </div>
+            </div>
+
+            <div class="a4-stage" id="a4-stage">
+              <div class="a4-viewport" id="a4-viewport">
+                <article id="a4-paper" class="a4-paper" aria-label="Mess Cut Request Letter Preview">
+                  <!-- Rendered dynamically by letterGenerator.js -->
+                </article>
+              </div>
+            </div>
+
+            <div class="mobile-preview-actions">
+              <button
+                type="button"
+                id="btn-mobile-download-pdf"
+                class="btn btn-primary btn-lg"
+                disabled
+              >
+                <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"
+                  />
+                  <path
+                    d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"
+                  />
+                </svg>
+                <span>Download PDF</span>
+              </button>
+              <button
+                type="button"
+                id="btn-mobile-print"
+                class="btn btn-secondary btn-lg"
+                disabled
+              >
+                Print
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Clear All Confirmation Modal -->
+    <div id="modal-backdrop" class="modal-backdrop" hidden>
+      <div
+        id="modal-dialog"
+        class="modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <h2 id="modal-title" class="modal-title">Clear All Data</h2>
+        <p id="modal-description" class="modal-description">
+          Are you sure you want to reset all entered student details and mess cut dates?
+        </p>
+        <div class="modal-actions">
+          <button type="button" id="modal-cancel" class="btn btn-secondary">Cancel</button>
+          <button type="button" id="modal-confirm" class="btn btn-danger">Clear Everything</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./js/main.js?v=20261118_formal_v4"></script>
+  </body>
+</html>
