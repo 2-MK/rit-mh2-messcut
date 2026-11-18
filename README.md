@@ -40,26 +40,29 @@ An institutional formal Mess Cut Request Generator engineered with a **minimalis
 
 ```text
 messcut_request/
+├── index.html            # Web app entrypoint (root for Vercel / zero-config hosting)
+├── css/
+│   └── styles.css        # Minimalist executive theme with minimal colors
+├── js/
+│   ├── main.js           # UI state & reactive event binding
+│   ├── dateValidation.js # Client-side date rule engine
+│   ├── letterGenerator.js# Live A4 letter preview builder
+│   ├── pdfExport.js      # ReportLab integration & client vector fallback
+│   └── storage.js        # LocalStorage and backend sync manager
+├── api/
+│   └── generate_pdf.py   # Vercel serverless Python ReportLab endpoint
 ├── app.py                # Local Python web server (zero-dependency, auto-opens browser)
 ├── gui.py                # Standalone Tkinter desktop GUI
 ├── cli.py                # Command-line interface for rapid PDF generation
 ├── pdf_generator.py      # ReportLab PDF engine (minimal-color executive A4 layout)
 ├── date_rules.py         # Pure Python date rules, calculations & validation logic
 ├── storage.py            # Local JSON profile and draft persistence layer
-├── test_messcut.py       # Automated unit test suite (14 test cases)
+├── test_messcut.py       # Automated unit test suite (15 test cases)
+├── requirements.txt      # Python dependencies (ReportLab)
+├── vercel.json           # Vercel deployment configuration
 ├── data/
 │   └── profiles.json     # Saved student profiles & drafts storage
-├── output/               # Default output folder for generated PDFs
-└── static/
-    ├── index.html        # Semantic, accessible HTML app layout
-    ├── css/
-    │   └── styles.css    # Minimalist executive theme with minimal colors
-    └── js/
-        ├── main.js           # UI state & reactive event binding
-        ├── dateValidation.js # Client-side date rule engine
-        ├── letterGenerator.js# Live A4 letter preview builder
-        ├── pdfExport.js      # ReportLab integration & client vector fallback
-        └── storage.js        # LocalStorage and backend sync manager
+└── output/               # Default output folder for generated PDFs
 ```
 
 ---
